@@ -1,4 +1,4 @@
-package binarySearchTree;
+
 
 /**
  * Test the functionality of the Rectangle class,

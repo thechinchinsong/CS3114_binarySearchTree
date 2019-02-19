@@ -1,4 +1,4 @@
-package binarySearchTree;
+
 
 /**
  * A basic node stored in a binary search tree. Built to work with

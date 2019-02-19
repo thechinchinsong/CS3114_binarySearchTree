@@ -1,4 +1,4 @@
-package binarySearchTree;
+
 
 /**
  * Implements a Rectangle class that contains the data of

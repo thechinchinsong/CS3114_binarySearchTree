@@ -1,4 +1,4 @@
-package binarySearchTree;
+
 
 /**
  * Implements an binary search tree. Note that all "matching" is
