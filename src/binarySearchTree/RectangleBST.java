@@ -127,7 +127,8 @@ public class RectangleBST extends BST<Rectangle, String> {
 
 
     /**
-     * Finds all rectangles within a specified rectangle
+     * Finds all rectangles intersecting a rectangle with the given
+     * parameters. Uses the intersectHelper method.
      * 
      * @param x
      *            x coordinate that is wanted
@@ -144,10 +145,55 @@ public class RectangleBST extends BST<Rectangle, String> {
 
 
     /**
-     * Finds all intersecting rectangles
+     * Finds all intersecting rectangles by going through an in-order
+     * ArrayList of all node in BST using the intersectHelper method
+     * to determine if they actually intersect
      */
     public void intersections() {
+        ArrayList<BinaryNode<Rectangle, String>> inorderList =
+            new ArrayList<BinaryNode<Rectangle, String>>();
+        TreeIterator test = new TreeIterator();
+        test.inorderTrav(root);
+        inorderList = test.getList();
+        for (int i = 0; i < inorderList.size(); i++) {
+            for (int j = i; j < inorderList.size(); j++) {
 
+            }
+        }
+    }
+
+
+    /**
+     * Compares the top left and bottom right points of two rectangles to
+     * determine if they are intersecting
+     * 
+     * @param node1
+     *            first rectangle to compare
+     * @param node2
+     *            second rectangle to compare
+     * @return
+     *         true if the 2 rectangles intersect, false if they don't
+     */
+    @SuppressWarnings("unused")
+    private boolean intersectHelper(
+        BinaryNode<Rectangle, String> node1,
+        BinaryNode<Rectangle, String> node2) {
+
+        // If one rectangle is on left side of other
+        if (node1.getElement().getX() >= node2.getElement().getX() + node2
+            .getElement().getWidth() || node2.getElement().getX() >= node1
+                .getElement().getX() + node1.getElement().getWidth()) {
+            return false;
+        }
+
+        // If one rectangle is below other
+        if (node1.getElement().getY() >= node2.getElement().getY() + node2
+            .getElement().getHeight() || node2.getElement().getY() >= node1
+                .getElement().getY() + node1.getElement().getHeight()) {
+            return false;
+        }
+
+        return true;
     }
 
 
