@@ -1,5 +1,3 @@
-
-
 /**
  * Test the functionality of the Rectangle class,
  * from CS3114 project 1.
@@ -34,7 +32,7 @@ public class RectangleTest extends student.TestCase {
      * Tests that the getWidth() method returns the width of the rectangle.
      */
     public void testGetWidth() {
-        assertEquals(rec1.getWidth(), 1);
+        assertEquals(rec1.getWidth(), 3);
     }
 
 
@@ -42,7 +40,7 @@ public class RectangleTest extends student.TestCase {
      * Tests that the getHeight() method returns the height of the rectangle.
      */
     public void testGetHeight() {
-        assertEquals(rec1.getHeight(), 2);
+        assertEquals(rec1.getHeight(), 4);
     }
 
 
@@ -50,7 +48,7 @@ public class RectangleTest extends student.TestCase {
      * Tests that the getX() method returns the X coordinate of the rectangle.
      */
     public void testGetX() {
-        assertEquals(rec1.getX(), 3);
+        assertEquals(rec1.getX(), 1);
     }
 
 
@@ -58,7 +56,7 @@ public class RectangleTest extends student.TestCase {
      * Tests that the getY() method returns the Y coordinate of the rectangle.
      */
     public void testGetY() {
-        assertEquals(rec1.getY(), 4);
+        assertEquals(rec1.getY(), 2);
     }
 
 }

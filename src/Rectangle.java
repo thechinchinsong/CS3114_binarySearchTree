@@ -1,5 +1,4 @@
 
-
 /**
  * Implements a Rectangle class that contains the data of
  * name, width, height, x-y coordinates, of a rectangle.
@@ -28,7 +27,7 @@ public class Rectangle {
     }
 
 
-    // Getter methods for revelant informations
+    // Getter methods for relevant informations
     public String getName() {
         return name;
     }
