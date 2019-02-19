@@ -10,7 +10,7 @@ package binarySearchTree;
  *            The type of data element contained in the node.
  * 
  * @author Yaoquan Song
- * @author Ben Zevin
+ * @author Ben Zevin (benz44)
  * @version 2019.2.19
  */
 
