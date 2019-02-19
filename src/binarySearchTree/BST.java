@@ -30,6 +30,10 @@ public class BST<U, T extends Comparable<? super T>> {
 
 
     // ~ Public methods ........................................................
+    public BinaryNode<U, T> getRoot() {
+        return root;
+    }
+    
     /**
      * Insert into the tree.
      *

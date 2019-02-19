@@ -27,14 +27,16 @@ public class TreeIterator {
      * Adds nodes through in-order traversal to ArrayList.
      */
     public void inorderTrav(BinaryNode<Rectangle, String> node) {
-        if (node.getLeft() != null) {
-            inorderTrav(node.getLeft());
-        }
+        if (node != null) {
+            if (node.getLeft() != null) {
+                inorderTrav(node.getLeft());
+            }
 
-        nodeList.add(node);
+            nodeList.add(node);
 
-        if (node.getRight() != null) {
-            inorderTrav(node.getRight());
+            if (node.getRight() != null) {
+                inorderTrav(node.getRight());
+            }
         }
     }
 

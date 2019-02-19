@@ -40,9 +40,10 @@ public class RectangleBSTTest extends student.TestCase {
         assertTrue(tree.isEmpty());
         tree.insert("rec1", 1, 1, 1, 1);
         assertFalse(tree.isEmpty());
-        tree.insert("rec1", 2, 2, 2, 2);
+        tree.insert("rec2", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
-
+        System.out.println(tree.findMax());
+        tree.dump();
     }
 
 
@@ -58,14 +59,21 @@ public class RectangleBSTTest extends student.TestCase {
         assertEquals("Rectangle rejected rec1\n", outContent.toString());
         assertTrue(tree.isEmpty());
         tree.insert("rec1", 1, 1, 1, 1);
+        //assertEquals(1, tree.getRoot());
         tree.insert("rec1", 2, 2, 2, 2);
+        assertEquals(2, tree.getSize());
+        assertFalse(tree.isEmpty());
         tree.remove("rec1");
+        assertEquals(1, tree.getSize());
+        assertFalse(tree.isEmpty());
         tree.remove("rec2");
+        assertFalse(tree.isEmpty());
+        tree.remove("rec1");
+        assertEquals(0, tree.getSize());
         assertEquals("Rectangle rejected rec1\n"
             + "Rectangle accepted: (rec1, 1, 1, 1, 1)\n"
             + "Rectangle accepted: (rec1, 2, 2, 2, 2)\n"
             + "Rectangle rejected rec2\n", outContent.toString());
-        tree.remove("rec1");
         assertTrue(tree.isEmpty());
 
     }
@@ -162,18 +170,19 @@ public class RectangleBSTTest extends student.TestCase {
         System.setOut(new PrintStream(outContent));
         assertTrue(tree.isEmpty());
         tree.dump();
-        assertEquals("BST dump:" + "Node has depth 0, Value (null)"
-            + "BST size is: 0", outContent.toString());
+        assertEquals("BST dump:\n" + "Node has depth 0, Value (null)\n"
+            + "BST size is: 0\n", outContent.toString());
         tree.insert("b", 2, 2, 2, 2);
         tree.insert("c", 1, 1, 1, 1);
         tree.insert("a", 3, 3, 3, 3);
-        System.setOut(new PrintStream(outContent));
+        final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent1));
         assertFalse(tree.isEmpty());
         tree.dump();
-        assertEquals("BST dump:" + "Node has depth 1, Value (a, 3, 3, 3, 3)"
-            + "Node has depth 0, Value (b, 2, 2, 2, 2)"
-            + "Node has depth 1, Value (c, 1, 1, 1, 1)" + "BST size is: 0",
-            outContent.toString());
-
+        assertEquals("BST dump: \n"
+            + "Node has depth 1, Value (a, 3, 3, 3, 3)\n"
+            + "Node has depth 0, Value (b, 2, 2, 2, 2)\n"
+            + "Node has depth 1, Value (c, 1, 1, 1, 1)\n" + "BST size is: 3\n",
+            outContent1.toString());
     }
 }

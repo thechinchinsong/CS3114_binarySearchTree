@@ -24,9 +24,10 @@ public class RectangleBST extends BST<Rectangle, String> {
 
 
     /**
-     * Contructs an empty tree.
+     * Constructs an empty tree.
      */
     public RectangleBST() {
+        super();
         root = null;
     }
 
@@ -38,6 +39,17 @@ public class RectangleBST extends BST<Rectangle, String> {
      */
     public BinaryNode<Rectangle, String> getRoot() {
         return root;
+    }
+
+
+    public int getSize() {
+        ArrayList<BinaryNode<Rectangle, String>> inorderList =
+            new ArrayList<BinaryNode<Rectangle, String>>();
+        TreeIterator test = new TreeIterator();
+        test.inorderTrav(root);
+        inorderList = test.getList();
+        System.out.println(inorderList.size());
+        return inorderList.size();
     }
 
 
@@ -244,9 +256,15 @@ public class RectangleBST extends BST<Rectangle, String> {
      */
     public void dump() {
         int size = 0;
+
         System.out.println("BST dump:");
-        dump(root, 0, size);
-        System.out.println("BST size is:" + size);
+        if (root == null) {
+            System.out.println("Node has depth 0, Value (null)");
+        }
+        else {
+            dump(root, 0, size);
+        }
+        System.out.println("BST size is: " + size);
     }
 
 
@@ -262,21 +280,34 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            starting size of the BST
      */
     private void dump(BinaryNode<Rectangle, String> node, int depth, int size) {
-        if (node.getLeft() != null) {
-            depth++;
-            size++;
-            dump(node.getLeft(), depth, size);
+        if (node == null) {
+            return;
         }
 
+        dump(node.getLeft(), depth, size);
+
+        depth++;
+        size++;
         System.out.println("Node has depth " + depth + ", Value (" + node
             .getElement().getWidth() + ", " + node.getElement().getX() + ", "
             + node.getElement().getY() + ", " + node.getElement().getWidth()
             + ", " + node.getElement().getHeight());
 
-        if (node.getRight() != null) {
-            depth++;
-            size++;
-            dump(node.getRight(), depth, size);
-        }
+        dump(node.getRight(), depth, size);
+
+        /*
+         * if (node.getLeft() != null) {
+         * depth++;
+         * size++;
+         * dump(node.getLeft(), depth, size);
+         * }
+         * 
+         * 
+         * if (node.getRight() != null) {
+         * depth++;
+         * size++;
+         * dump(node.getRight(), depth, size);
+         * }
+         */
     }
 }
