@@ -1,5 +1,7 @@
 package binarySearchTree;
 
+import java.util.ArrayList;
+
 /**
  * A basic binary search tree iterator that uses in-order traversal
  * 
@@ -10,6 +12,8 @@ package binarySearchTree;
 
 public class TreeIterator {
     BinaryNode<Rectangle, String> result;
+    ArrayList<BinaryNode<Rectangle, String>> nodeList =
+        new ArrayList<BinaryNode<Rectangle, String>>();
 
 
     // Default Constructor
@@ -21,17 +25,21 @@ public class TreeIterator {
     /**
      * Returns the last node in the in-order traversal of the iterator
      */
-    public BinaryNode<Rectangle, String> inorderTrav(
-        BinaryNode<Rectangle, String> p) {
-        if (p.getLeft() != null) {
-            inorderTrav(p.getLeft());
+    public void inorderTrav(BinaryNode<Rectangle, String> node) {
+        if (node.getLeft() != null) {
+            inorderTrav(node.getLeft());
         }
 
-        result = p;
+        nodeList.add(node);
 
-        if (p.getRight() != null) {
-            inorderTrav(p.getRight());
+        if (node.getRight() != null) {
+            inorderTrav(node.getRight());
         }
-        return result;
+    }
+
+
+    // getter method for the ArrayList of nodes
+    public ArrayList<BinaryNode<Rectangle, String>> getList() {
+        return nodeList;
     }
 }
