@@ -42,8 +42,6 @@ public class RectangleBSTTest extends student.TestCase {
         assertFalse(tree.isEmpty());
         tree.insert("rec2", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
-        System.out.println(tree.findMax());
-        tree.dump();
     }
 
 
@@ -59,7 +57,7 @@ public class RectangleBSTTest extends student.TestCase {
         assertEquals("Rectangle rejected rec1\n", outContent.toString());
         assertTrue(tree.isEmpty());
         tree.insert("rec1", 1, 1, 1, 1);
-        //assertEquals(1, tree.getRoot());
+        assertEquals(1, tree.getSize());
         tree.insert("rec1", 2, 2, 2, 2);
         assertEquals(2, tree.getSize());
         assertFalse(tree.isEmpty());
@@ -87,7 +85,7 @@ public class RectangleBSTTest extends student.TestCase {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         assertTrue(tree.isEmpty());
-        tree.remove("rec1");
+        tree.remove(-1, 1, 1, 1);
         assertEquals("Rectangle rejected (-1, 1, 1, 1)\n", outContent
             .toString());
         assertTrue(tree.isEmpty());
@@ -95,12 +93,14 @@ public class RectangleBSTTest extends student.TestCase {
         tree.insert("rec1", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
         tree.remove(1, 1, 1, 1);
+        assertEquals(1, tree.getSize());
         tree.remove(3, 4, 5, 6);
         assertEquals("Rectangle rejected (-1, 1, 1, 1)\n"
             + "Rectangle accepted: (rec1, 1, 1, 1, 1)\n"
             + "Rectangle accepted: (rec1, 2, 2, 2, 2)\n"
             + "Rectangle rejected (3, 4, 5, 6)\n", outContent.toString());
-        tree.remove("rec1");
+        tree.remove(2, 2, 2, 2);
+        assertEquals(0, tree.getSize());
         assertTrue(tree.isEmpty());
 
     }
@@ -151,15 +151,17 @@ public class RectangleBSTTest extends student.TestCase {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         tree.search("a");
-        assertEquals("Rectangle not found: a", outContent.toString());
+        assertEquals("Rectangle not found: a\n", outContent.toString());
         tree.insert("b", 2, 2, 2, 2);
         tree.insert("c", 1, 1, 1, 1);
         tree.insert("a", 3, 3, 3, 3);
-        System.setOut(new PrintStream(outContent));
+        final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent1));
         tree.search("c");
-        assertEquals("Rectangle found: (c, 1, 1, 1, 1)", outContent.toString());
+        assertEquals("Rectangle found: (c, 1, 1, 1, 1)\n", outContent1.toString());
 
     }
+    
 
 
     /**
@@ -179,7 +181,7 @@ public class RectangleBSTTest extends student.TestCase {
         System.setOut(new PrintStream(outContent1));
         assertFalse(tree.isEmpty());
         tree.dump();
-        assertEquals("BST dump: \n"
+        assertEquals("BST dump:\n"
             + "Node has depth 1, Value (a, 3, 3, 3, 3)\n"
             + "Node has depth 0, Value (b, 2, 2, 2, 2)\n"
             + "Node has depth 1, Value (c, 1, 1, 1, 1)\n" + "BST size is: 3\n",

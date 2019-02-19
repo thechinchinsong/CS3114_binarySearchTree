@@ -176,7 +176,7 @@ public class BST<U, T extends Comparable<? super T>> {
             node.setLeft(remove(x, node.getLeft()));
         }
         // if value should be to the right of the root
-        else if (x.compareTo(node.getKey()) >= 0) {
+        else if (x.compareTo(node.getKey()) > 0) {
             node.setRight(remove(x, node.getRight()));
         }
         // If value is on the current node

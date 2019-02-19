@@ -28,7 +28,6 @@ public class RectangleBST extends BST<Rectangle, String> {
      */
     public RectangleBST() {
         super();
-        root = null;
     }
 
 
@@ -46,9 +45,8 @@ public class RectangleBST extends BST<Rectangle, String> {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
         TreeIterator test = new TreeIterator();
-        test.inorderTrav(root);
+        test.inorderTrav(super.getRoot());
         inorderList = test.getList();
-        System.out.println(inorderList.size());
         return inorderList.size();
     }
 
@@ -71,13 +69,14 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            height of the rectangle
      */
     public void insert(String name, int x, int y, int w, int h) {
-        if (w > 0 && h > 0 && y >= 0 && x >= 0) {
+        if (w > 0 && h > 0 && y >= 0 && x >= 0 && (x + w <= 1024) && (y
+            + h <= 1024)) {
             super.insert(new Rectangle(name, x, y, w, h), name);
-            System.out.println("Rectangle accepted (" + name + ", " + x + ", "
+            System.out.println("Rectangle accepted: (" + name + ", " + x + ", "
                 + y + ", " + w + ", " + h + ")");
         }
         else {
-            System.out.println("Rectangle rejected (" + name + ", " + x + ", "
+            System.out.println("Rectangle rejected: (" + name + ", " + x + ", "
                 + y + ", " + w + ", " + h + ")");
         }
     }
@@ -119,21 +118,27 @@ public class RectangleBST extends BST<Rectangle, String> {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
         TreeIterator test = new TreeIterator();
-        test.inorderTrav(root);
+        test.inorderTrav(super.getRoot());
         inorderList = test.getList();
+        boolean found = false;
         for (int i = 0; i < inorderList.size(); i++) {
-            if (inorderList.get(i).getElement().getX() == x && inorderList.get(
-                i).getElement().getY() == y && inorderList.get(i).getElement()
-                    .getWidth() == w && inorderList.get(i).getElement()
-                        .getHeight() == h) {
+            if ((inorderList.get(i).getElement().getX() == x) && (inorderList
+                .get(i).getElement().getY() == y) && (inorderList.get(i)
+                    .getElement().getWidth() == w) && (inorderList.get(i)
+                        .getElement().getHeight() == h)) {
+                found = true;
                 try {
                     super.remove(inorderList.get(i).getKey());
                 }
                 catch (Exception e) {
-                    System.out.println("Rectangle rejected (" + x + ", " + y
-                        + ", " + w + ", " + h + ")");
+                    // System.out.println("Rectangle rejected (" + x + ", " + y
+                    // + ", " + w + ", " + h + ")");
                 }
             }
+        }
+        if (!found) {
+            System.out.println("Rectangle rejected (" + x + ", " + y + ", " + w
+                + ", " + h + ")");
         }
     }
 
@@ -153,11 +158,24 @@ public class RectangleBST extends BST<Rectangle, String> {
      */
     public void regionSearch(int x, int y, int w, int h) {
         System.out.println("Rectangles intersecting region (" + x + ", " + y
-            + ", " + w + ", " + h + ")");
+            + ", " + w + ", " + h + "):");
+
+        ArrayList<BinaryNode<Rectangle, String>> inorderList =
+            new ArrayList<BinaryNode<Rectangle, String>>();
+        TreeIterator orderiterator = new TreeIterator();
+        orderiterator.inorderTrav(super.getRoot());
+        inorderList = orderiterator.getList();
 
         if (h > 0 || w > 0) {
-            BinaryNode<Rectangle, String> test;
-
+            Rectangle test = new Rectangle("test", x, y, w, h);
+            for (int i = 0; i < inorderList.size(); i++) {
+                if (intersectHelper(test, inorderList.get(i).getElement())) {
+                    Rectangle temp = inorderList.get(i).getElement();
+                    System.out.println("(" + temp.getName() + ", " + temp.getX()
+                        + ", " + temp.getY() + ", " + temp.getWidth() + ", "
+                        + temp.getHeight() + ")");
+                }
+            }
         }
     }
 
@@ -171,11 +189,17 @@ public class RectangleBST extends BST<Rectangle, String> {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
         TreeIterator test = new TreeIterator();
-        test.inorderTrav(root);
+        test.inorderTrav(super.getRoot());
         inorderList = test.getList();
         for (int i = 0; i < inorderList.size(); i++) {
-            for (int j = i; j < inorderList.size(); j++) {
-
+            for (int j = i+1; j < inorderList.size(); j++) {
+                Rectangle reci = inorderList.get(i).getElement();
+                Rectangle recj = inorderList.get(j).getElement();
+                if (intersectHelper(reci, recj) {
+                    System.out.println("(" + temp.getName() + ", " + temp.getX()
+                        + ", " + temp.getY() + ", " + temp.getWidth() + ", "
+                        + temp.getHeight() + ")");
+                }
             }
         }
     }
@@ -193,21 +217,17 @@ public class RectangleBST extends BST<Rectangle, String> {
      *         true if the 2 rectangles intersect, false if they don't
      */
     @SuppressWarnings("unused")
-    private boolean intersectHelper(
-        BinaryNode<Rectangle, String> node1,
-        BinaryNode<Rectangle, String> node2) {
+    private boolean intersectHelper(Rectangle rec1, Rectangle rec2) {
 
         // If one rectangle is on left side of other
-        if (node1.getElement().getX() >= node2.getElement().getX() + node2
-            .getElement().getWidth() || node2.getElement().getX() >= node1
-                .getElement().getX() + node1.getElement().getWidth()) {
+        if (rec1.getX() >= rec2.getX() + rec2.getWidth() || rec2.getX() >= rec1
+            .getX() + rec1.getWidth()) {
             return false;
         }
 
         // If one rectangle is below other
-        if (node1.getElement().getY() >= node2.getElement().getY() + node2
-            .getElement().getHeight() || node2.getElement().getY() >= node1
-                .getElement().getY() + node1.getElement().getHeight()) {
+        if (rec1.getY() >= rec2.getY() + rec2.getHeight() || rec2.getY() >= rec1
+            .getY() + rec1.getHeight()) {
             return false;
         }
 
@@ -229,7 +249,7 @@ public class RectangleBST extends BST<Rectangle, String> {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
         TreeIterator test = new TreeIterator();
-        test.inorderTrav(root);
+        test.inorderTrav(super.getRoot());
         inorderList = test.getList();
         for (int i = 0; i < inorderList.size(); i++) {
             if (inorderList.get(i).getKey().equals(name)) {
@@ -255,16 +275,15 @@ public class RectangleBST extends BST<Rectangle, String> {
      * recursive in-order traversal of the binary tree.
      */
     public void dump() {
-        int size = 0;
-
         System.out.println("BST dump:");
-        if (root == null) {
+        if (super.getRoot() == null) {
             System.out.println("Node has depth 0, Value (null)");
+            System.out.println("BST size is: 0");
         }
         else {
-            dump(root, 0, size);
+            dump(super.getRoot(), 0);
+            System.out.println("BST size is: " + this.getSize());
         }
-        System.out.println("BST size is: " + size);
     }
 
 
@@ -279,35 +298,23 @@ public class RectangleBST extends BST<Rectangle, String> {
      * @param size
      *            starting size of the BST
      */
-    private void dump(BinaryNode<Rectangle, String> node, int depth, int size) {
+    private void dump(BinaryNode<Rectangle, String> node, int depth) {
         if (node == null) {
             return;
         }
 
-        dump(node.getLeft(), depth, size);
+        if (node.getLeft() != null) {
+            dump(node.getLeft(), depth + 1);
+        }
 
-        depth++;
-        size++;
         System.out.println("Node has depth " + depth + ", Value (" + node
-            .getElement().getWidth() + ", " + node.getElement().getX() + ", "
+            .getElement().getName() + ", " + node.getElement().getX() + ", "
             + node.getElement().getY() + ", " + node.getElement().getWidth()
-            + ", " + node.getElement().getHeight());
+            + ", " + node.getElement().getHeight() + ")");
 
-        dump(node.getRight(), depth, size);
+        if (node.getRight() != null) {
+            dump(node.getRight(), depth + 1);
+        }
 
-        /*
-         * if (node.getLeft() != null) {
-         * depth++;
-         * size++;
-         * dump(node.getLeft(), depth, size);
-         * }
-         * 
-         * 
-         * if (node.getRight() != null) {
-         * depth++;
-         * size++;
-         * dump(node.getRight(), depth, size);
-         * }
-         */
     }
 }
