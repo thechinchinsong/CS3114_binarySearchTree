@@ -63,11 +63,19 @@ public class RectangleBST extends BST<Rectangle, String> {
     }
     
     public void dump() {
-        BinaryNode<Rectangle,String> result;
-        TreeIterator test = new TreeIterator();
-        result = test.inorderTrav(root);
-        while (result != null) {
-                
+        System.out.println("BST dump:");
+        dump(root);
+    }
+    
+    private void dump(BinaryNode<Rectangle, String> node) {
+        if (node.getLeft() != null) {
+            dump(node.getLeft());
+        }
+
+        System.out.println("");
+
+        if (node.getRight() != null) {
+            dump(node.getRight());
         }
     }
 }
