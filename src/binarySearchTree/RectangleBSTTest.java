@@ -121,7 +121,7 @@ public class RectangleBSTTest extends student.TestCase{
         tree.insert("c", 1, 1, 1, 1);
         tree.insert("a", 3, 3, 3, 3);
         System.setOut(new PrintStream(outContent));
-        tree.intersection();
+        //tree.intersection();
         assertEquals("Intersection pairs:"
         		+ "(a, 3, 3, 3, 3) : (b, 2, 2, 2, 2)", outContent.toString());
 		
