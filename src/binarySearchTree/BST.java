@@ -1,18 +1,35 @@
 package binarySearchTree;
 
-public class BST<U,T extends Comparable<? super T>> {
-    
-    private BinaryNode<U,T> root;
-    
+/**
+ * Implements an  binary search tree. Note that all "matching" is
+ * based on the compareTo() method. Most of this class was taken
+ * from the basic CS 2114 binary search tree and and this is the 
+ * base from which the RectangleBST is built off of. Permission was
+ * given to use this class in this project.
+ *
+ * @param <T>
+ *            The key of each node.
+ * @param <U>
+ *            The data stored in each node.
+ * @author Ben Zevin
+ * @author Yaoquan Song
+ * @version 2019.2.19
+ */
+
+public class BST<U, T extends Comparable<? super T>> {
+
+    private BinaryNode<U, T> root;
+
+
     /**
      * Constructs an empty tree.
      */
-    public BST() { root = null; }
+    public BST() {
+        root = null;
+    }
+
 
     // ~ Public methods ........................................................
-
-
-    // ----------------------------------------------------------
     /**
      * Insert into the tree.
      *
@@ -26,7 +43,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Remove the specified value from the tree.
      *
@@ -40,7 +56,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Find the smallest item in the tree.
      *
@@ -51,7 +66,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Find the largest item in the tree.
      *
@@ -62,7 +76,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Find an item in the tree.
      *
@@ -75,7 +88,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Make the tree logically empty.
      */
@@ -84,7 +96,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Test if the tree is logically empty.
      *
@@ -95,7 +106,8 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
+    // ~ Private methods
+    // ........................................................
     /**
      * Internal method to get element value stored in a tree node, with safe
      * handling of null nodes.
@@ -104,12 +116,11 @@ public class BST<U,T extends Comparable<? super T>> {
      *            the node.
      * @return the element field or null if node is null.
      */
-    private T elementAt(BinaryNode<U,T> node) {
+    private T elementAt(BinaryNode<U, T> node) {
         return (node == null) ? null : node.getKey();
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Internal method to insert a value into a subtree.
      *
@@ -121,9 +132,9 @@ public class BST<U,T extends Comparable<? super T>> {
      * @throws DuplicateItemException
      *             if x is already present.
      */
-    public BinaryNode<U,T> insertHelper(U x, T k, BinaryNode<U,T> node) {
+    public BinaryNode<U, T> insertHelper(U x, T k, BinaryNode<U, T> node) {
         if (node == null) {
-            return new BinaryNode<U,T>(x, k);
+            return new BinaryNode<U, T>(x, k);
         }
         else if (k.compareTo(node.getKey()) < 0) {
             node.setLeft(insertHelper(x, k, node.getLeft()));
@@ -135,7 +146,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Internal method to remove a specified item from a subtree.
      *
@@ -147,10 +157,10 @@ public class BST<U,T extends Comparable<? super T>> {
      * @throws ItemNotFoundException
      *             if x is not found.
      */
-    private BinaryNode<U,T> remove(T x, BinaryNode<U,T> node) {
+    private BinaryNode<U, T> remove(T x, BinaryNode<U, T> node) {
         // This local variable will contain the new root of the subtree,
         // if the root needs to change.
-        BinaryNode<U,T> result = node;
+        BinaryNode<U, T> result = node;
 
         // If there's no more subtree to examine
         if (node == null) {
@@ -186,7 +196,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Internal method to find the smallest item in a subtree.
      *
@@ -194,7 +203,7 @@ public class BST<U,T extends Comparable<? super T>> {
      *            the node that roots the tree.
      * @return node containing the smallest item.
      */
-    private BinaryNode<U,T> findMin(BinaryNode<U,T> node) {
+    private BinaryNode<U, T> findMin(BinaryNode<U, T> node) {
         if (node == null) {
             return node;
         }
@@ -207,7 +216,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Internal method to find the largest item in a subtree.
      *
@@ -215,7 +223,7 @@ public class BST<U,T extends Comparable<? super T>> {
      *            the node that roots the tree.
      * @return node containing the largest item.
      */
-    private BinaryNode<U,T> findMax(BinaryNode<U,T> node) {
+    private BinaryNode<U, T> findMax(BinaryNode<U, T> node) {
         if (node == null) {
             return node;
         }
@@ -228,7 +236,6 @@ public class BST<U,T extends Comparable<? super T>> {
     }
 
 
-    // ----------------------------------------------------------
     /**
      * Internal method to find an item in a subtree.
      *
@@ -238,7 +245,7 @@ public class BST<U,T extends Comparable<? super T>> {
      *            the node that roots the tree.
      * @return node containing the matched item.
      */
-    private BinaryNode<U,T> find(T x, BinaryNode<U,T> node) {
+    private BinaryNode<U, T> find(T x, BinaryNode<U, T> node) {
         if (node == null) {
             return null; // Not found
         }
@@ -253,6 +260,5 @@ public class BST<U,T extends Comparable<? super T>> {
         else {
             return node; // Match
         }
-
     }
 }
