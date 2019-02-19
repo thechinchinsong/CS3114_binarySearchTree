@@ -140,7 +140,13 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            height that is wanted
      */
     public void regionSearch(int x, int y, int w, int h) {
+        System.out.println("Rectangles intersecting region (" + x + ", " + y
+            + ", " + w + ", " + h + ")");
 
+        if (h > 0 || w > 0) {
+            BinaryNode<Rectangle, String> test;
+            
+        }
     }
 
 
