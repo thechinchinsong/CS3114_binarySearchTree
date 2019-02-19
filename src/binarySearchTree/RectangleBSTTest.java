@@ -132,14 +132,15 @@ public class RectangleBSTTest extends student.TestCase {
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         tree.intersections();
-        assertEquals("Intersection pairs:", outContent.toString());
+        assertEquals("Intersection pairs:\n", outContent.toString());
         tree.insert("b", 2, 2, 2, 2);
         tree.insert("c", 1, 1, 1, 1);
         tree.insert("a", 3, 3, 3, 3);
-        System.setOut(new PrintStream(outContent));
-        // tree.intersection();
-        assertEquals("Intersection pairs:"
-            + "(a, 3, 3, 3, 3) : (b, 2, 2, 2, 2)", outContent.toString());
+        final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outContent1));
+        tree.intersections();
+        assertEquals("Intersection pairs:\n"
+            + "(a, 3, 3, 3, 3) : (b, 2, 2, 2, 2)\n", outContent1.toString());
 
     }
 
@@ -158,10 +159,10 @@ public class RectangleBSTTest extends student.TestCase {
         final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent1));
         tree.search("c");
-        assertEquals("Rectangle found: (c, 1, 1, 1, 1)\n", outContent1.toString());
+        assertEquals("Rectangle found: (c, 1, 1, 1, 1)\n", outContent1
+            .toString());
 
     }
-    
 
 
     /**
@@ -181,8 +182,7 @@ public class RectangleBSTTest extends student.TestCase {
         System.setOut(new PrintStream(outContent1));
         assertFalse(tree.isEmpty());
         tree.dump();
-        assertEquals("BST dump:\n"
-            + "Node has depth 1, Value (a, 3, 3, 3, 3)\n"
+        assertEquals("BST dump:\n" + "Node has depth 1, Value (a, 3, 3, 3, 3)\n"
             + "Node has depth 0, Value (b, 2, 2, 2, 2)\n"
             + "Node has depth 1, Value (c, 1, 1, 1, 1)\n" + "BST size is: 3\n",
             outContent1.toString());

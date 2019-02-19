@@ -186,19 +186,22 @@ public class RectangleBST extends BST<Rectangle, String> {
      * to determine if they actually intersect
      */
     public void intersections() {
+        System.out.println("Intersection pairs:");
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
         TreeIterator test = new TreeIterator();
         test.inorderTrav(super.getRoot());
         inorderList = test.getList();
         for (int i = 0; i < inorderList.size(); i++) {
-            for (int j = i+1; j < inorderList.size(); j++) {
+            for (int j = i + 1; j < inorderList.size(); j++) {
                 Rectangle reci = inorderList.get(i).getElement();
                 Rectangle recj = inorderList.get(j).getElement();
-                if (intersectHelper(reci, recj) {
-                    System.out.println("(" + temp.getName() + ", " + temp.getX()
-                        + ", " + temp.getY() + ", " + temp.getWidth() + ", "
-                        + temp.getHeight() + ")");
+                if (intersectHelper(reci, recj)) {
+                    System.out.println("(" + reci.getName() + ", " + reci.getX()
+                        + ", " + reci.getY() + ", " + reci.getWidth() + ", "
+                        + reci.getHeight() + ") : (" + recj.getName() + ", "
+                        + recj.getX() + ", " + recj.getY() + ", " + recj
+                            .getWidth() + ", " + recj.getHeight() + ")");
                 }
             }
         }
