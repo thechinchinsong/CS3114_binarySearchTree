@@ -20,7 +20,7 @@ public class Reader {
         while (scan.hasNextLine()) {
             String line = scan.nextLine();
             String[] parts = line.split("\\s+");
-            //System.out.println(line);
+            // System.out.println(line);
             System.out.println(parts[0].toString());
             if (parts[0].contentEquals("insert") && parts.length == 6) {
 
@@ -34,11 +34,11 @@ public class Reader {
                 catch (NumberFormatException e) {
                     System.out.print("Invalid Command Format");
                 }
-                //tree.insert(parts[1], x, y, w, h);
+                // tree.insert(parts[1], x, y, w, h);
 
             }
             else if (parts[0].contentEquals("remove") && parts.length == 2) {
-                //tree.remove(parts[1]);
+                // tree.remove(parts[1]);
 
             }
             else if (parts[0].contentEquals("remove") && parts.length == 5) {
@@ -53,15 +53,15 @@ public class Reader {
                 catch (NumberFormatException e) {
                     System.out.print("Invalid Command Format");
                 }
-                //tree.remove(x, y, w, h);
+                // tree.remove(x, y, w, h);
 
             }
             else if (parts[0].contentEquals("search") && parts.length == 2) {
-                //tree.search(parts[1]);
+                // tree.search(parts[1]);
 
             }
             else if (parts[0].contentEquals("dump") && parts.length == 1) {
-                //tree.dump();
+                // tree.dump();
 
             }
             else if (parts[0].contentEquals("regionsearch")
@@ -77,12 +77,12 @@ public class Reader {
                 catch (NumberFormatException e) {
                     System.out.print("Invalid Command Format");
                 }
-                //tree.regionSearch(x, y, w, h);
+                // tree.regionSearch(x, y, w, h);
 
             }
             else if (parts[0].contentEquals("intersections")
                 && parts.length == 1) {
-                //tree.intersections();
+                // tree.intersections();
 
             }
 
