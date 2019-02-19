@@ -1,9 +1,9 @@
 package binarySearchTree;
 
 /**
- * Implements an  binary search tree. Note that all "matching" is
+ * Implements an binary search tree. Note that all "matching" is
  * based on the compareTo() method. Most of this class was taken
- * from the basic CS 2114 binary search tree and and this is the 
+ * from the basic CS 2114 binary search tree and and this is the
  * base from which the RectangleBST is built off of. Permission was
  * given to use this class in this project.
  *

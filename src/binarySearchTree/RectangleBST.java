@@ -145,7 +145,7 @@ public class RectangleBST extends BST<Rectangle, String> {
 
         if (h > 0 || w > 0) {
             BinaryNode<Rectangle, String> test;
-            
+
         }
     }
 
