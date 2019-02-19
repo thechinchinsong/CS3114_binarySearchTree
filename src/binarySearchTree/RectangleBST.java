@@ -1,21 +1,63 @@
 package binarySearchTree;
 
+/**
+ * Implements an binary search tree specifically using the rectangle class
+ * in order to fulfill requirements for project 1. Inherits from the original
+ * BST class in order to utilize and build off of the basic BST methods. Uses
+ * the TreeIterator class for some aspects of in-order traversal for specific
+ * functionality needed.
+ *
+ * @param <Rectangle>
+ *            The data stored in each node.
+ * @param <Name>
+ *            The name of each node that is also the key. The same as the name
+ *            of each rectangle stored in the node.
+ * @author Ben Zevin
+ * @author Yaoquan Song
+ * @version 2019.2.19
+ */
+
 import java.util.ArrayList;
 
 public class RectangleBST extends BST<Rectangle, String> {
     private BinaryNode<Rectangle, String> root;
 
 
-    public BinaryNode<Rectangle, String> getRoot() {
-        return root;
-    }
-
-
+    /**
+     * Contructs an empty tree.
+     */
     public RectangleBST() {
         root = null;
     }
 
 
+    /**
+     * Returns the root node of the tree.
+     * 
+     * @return
+     */
+    public BinaryNode<Rectangle, String> getRoot() {
+        return root;
+    }
+
+
+    /**
+     * Inserts a rectangle into the BST. Handles nodes alphabetically from
+     * left to right and accepts identical insertions by sending them to
+     * the right. Uses the inherited insert method from the BST class
+     * 
+     * 
+     * @param name
+     *            name/key of the node as well as the name of the rectangle
+     * @param x
+     *            x coordinate of the rectangle
+     * @param y
+     *            y coordinate of the rectangle
+     * @param w
+     *            width of the rectangle
+     * @param h
+     *            height of the rectangle
+     */
     public void insert(String name, int x, int y, int w, int h) {
         if (w > 0 && h > 0 && y >= 0 && x >= 0) {
             super.insert(new Rectangle(name, x, y, w, h), name);
@@ -29,6 +71,11 @@ public class RectangleBST extends BST<Rectangle, String> {
     }
 
 
+    /**
+     * Removes nodes based on name. Uses the inherited BST class's
+     * remove function. The try catch is in order to catch when the
+     * wanted rectangle could not be found to be removed.
+     */
     public void remove(String name) {
         try {
             super.remove(name);
@@ -39,6 +86,23 @@ public class RectangleBST extends BST<Rectangle, String> {
     }
 
 
+    /**
+     * Removes nodes based on the rectangle's information. The
+     * TreeIterator is used to generate an in-order list ArrayList
+     * of the BST and then a for loop is used to cycle through all
+     * nodes, using the remove(name) function to remove all relevant
+     * rectangles. Try-catch is used here for the same reason as in
+     * the insert method.
+     * 
+     * @param x
+     *            x coordinate that is wanted
+     * @param y
+     *            y coordinate that is wanted
+     * @param w
+     *            width that is wanted
+     * @param h
+     *            height that is wanted
+     */
     public void remove(int x, int y, int w, int h) {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
@@ -50,7 +114,6 @@ public class RectangleBST extends BST<Rectangle, String> {
                 i).getElement().getY() == y && inorderList.get(i).getElement()
                     .getWidth() == w && inorderList.get(i).getElement()
                         .getHeight() == h) {
-
                 try {
                     super.remove(inorderList.get(i).getKey());
                 }
@@ -79,16 +142,36 @@ public class RectangleBST extends BST<Rectangle, String> {
     }
 
 
+    /**
+     * The dump function that is called to print out an in-order
+     * list of nodes in the BST with depth information and overall
+     * size of the BST. Uses the private dump helper method for
+     * recursive in-order traversal of the binary tree.
+     */
     public void dump() {
+        int size = 0;
         System.out.println("BST dump:");
-        dump(root, 0);
+        dump(root, 0, size);
+        System.out.println("BST size is:" + size);
     }
 
 
-    private void dump(BinaryNode<Rectangle, String> node, int depth) {
+    /**
+     * Function that recursively prints out information on each node
+     * while going through the in-order traversal of the BST.
+     * 
+     * @param node
+     *            the node at which to start in-order traversal
+     * @param depth
+     *            starting depth
+     * @param size
+     *            starting size of the BST
+     */
+    private void dump(BinaryNode<Rectangle, String> node, int depth, int size) {
         if (node.getLeft() != null) {
             depth++;
-            dump(node.getLeft(), depth);
+            size++;
+            dump(node.getLeft(), depth, size);
         }
 
         System.out.println("Node has depth " + depth + ", Value (" + node
@@ -98,7 +181,8 @@ public class RectangleBST extends BST<Rectangle, String> {
 
         if (node.getRight() != null) {
             depth++;
-            dump(node.getRight(), depth);
+            size++;
+            dump(node.getRight(), depth, size);
         }
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 /**
  * A basic binary search tree iterator that uses in-order traversal
+ * to add nodes of tree into an ArrayList.
  * 
  * @author Yaoquan Song
  * @author Ben Zevin
@@ -11,19 +12,19 @@ import java.util.ArrayList;
  */
 
 public class TreeIterator {
-    BinaryNode<Rectangle, String> result;
-    ArrayList<BinaryNode<Rectangle, String>> nodeList =
-        new ArrayList<BinaryNode<Rectangle, String>>();
+    ArrayList<BinaryNode<Rectangle, String>> nodeList;
 
 
-    // Default Constructor
+    /**
+     * Default Constructor
+     */
     public TreeIterator() {
-        result = null;
+        nodeList = new ArrayList<BinaryNode<Rectangle, String>>();
     }
 
 
     /**
-     * Returns the last node in the in-order traversal of the iterator
+     * Adds nodes through in-order traversal to ArrayList.
      */
     public void inorderTrav(BinaryNode<Rectangle, String> node) {
         if (node.getLeft() != null) {
@@ -38,7 +39,12 @@ public class TreeIterator {
     }
 
 
-    // getter method for the ArrayList of nodes
+    /**
+     * Getter method for the ArrayList of nodes
+     * 
+     * @return
+     *         In-order ArrayList of nodes in BST
+     */
     public ArrayList<BinaryNode<Rectangle, String>> getList() {
         return nodeList;
     }
