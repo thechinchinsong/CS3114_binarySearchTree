@@ -126,19 +126,61 @@ public class RectangleBST extends BST<Rectangle, String> {
     }
 
 
+    /**
+     * Finds all rectangles within a specified rectangle
+     * 
+     * @param x
+     *            x coordinate that is wanted
+     * @param y
+     *            y coordinate that is wanted
+     * @param w
+     *            width that is wanted
+     * @param h
+     *            height that is wanted
+     */
     public void regionSearch(int x, int y, int w, int h) {
 
     }
 
 
+    /**
+     * Finds all intersecting rectangles
+     */
     public void intersections() {
 
     }
 
 
+    /**
+     * Uses a similar process to removing based on given information. Instead of
+     * removal after going through the in-order ArrayList, it simply prints out
+     * the relevant information if the name matches. Otherwise it will simply
+     * print that the rectangle was not found.
+     * 
+     * @param name
+     *            finds all rectangles with this name
+     */
     public void search(String name) {
-        // must return all rectangles with the same name
-        super.find(name);
+        boolean found = false;
+        ArrayList<BinaryNode<Rectangle, String>> inorderList =
+            new ArrayList<BinaryNode<Rectangle, String>>();
+        TreeIterator test = new TreeIterator();
+        test.inorderTrav(root);
+        inorderList = test.getList();
+        for (int i = 0; i < inorderList.size(); i++) {
+            if (inorderList.get(i).getKey().equals(name)) {
+                System.out.println("Rectangle found: (" + name + ", "
+                    + inorderList.get(i).getElement().getX() + ", "
+                    + inorderList.get(i).getElement().getY() + ", "
+                    + inorderList.get(i).getElement().getWidth() + ", "
+                    + inorderList.get(i).getElement().getHeight() + ")");
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Rectangle not found: " + name);
+        }
     }
 
 
