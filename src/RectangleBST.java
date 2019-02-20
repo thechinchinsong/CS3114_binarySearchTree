@@ -70,8 +70,10 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            height of the rectangle
      */
     public void insert(String name, int x, int y, int w, int h) {
+
         if ((w > 0) && (h > 0) && (y >= 0) && (x >= 0) && ((x + w) <= 1024)
-            && ((y + h) <= 1024)) {
+            && ((y + h) <= 1024) && Character.isLetter(name.charAt(0)) && name
+                .matches("[A-Za-z0-9_]*")) {
             super.insert(new Rectangle(name, x, y, w, h), name);
             System.out.println("Rectangle accepted: (" + name + ", " + x + ", "
                 + y + ", " + w + ", " + h + ")");

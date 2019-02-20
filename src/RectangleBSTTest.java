@@ -39,22 +39,19 @@ public class RectangleBSTTest extends student.TestCase {
         assertTrue(tree.isEmpty());
         tree.insert("rec1", 1, 1, 1, -1);
         assertTrue(tree.isEmpty());
+        tree.insert("1rec", 1, 1, 1, 1);
+        tree.insert("rec+", 1, 1, 1, 1);
         assertEquals("Rectangle rejected: (rec1, -1, 1, 1, 1)\n"
             + "Rectangle rejected: (rec1, 1, -1, 1, 1)\n"
             + "Rectangle rejected: (rec1, 1, 1, -1, 1)\n"
-            + "Rectangle rejected: (rec1, 1, 1, 1, -1)\n", outContent
+            + "Rectangle rejected: (rec1, 1, 1, 1, -1)\n"
+            + "Rectangle rejected: (1rec, 1, 1, 1, 1)\n"
+            + "Rectangle rejected: (rec+, 1, 1, 1, 1)\n", outContent
                 .toString());
         tree.insert("rec1", 1, 1, 1, 1);
         assertFalse(tree.isEmpty());
         tree.insert("rec2", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
-
-        /*final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(outContent1));
-        assertEquals("Rectangle accepted: (rec1, 1, 1, 1, 1)\n"
-            + "Rectangle accepted: (rec2, 2, 2, 2, 2)\n", outContent1
-                .toString());*/
-
     }
 
 
