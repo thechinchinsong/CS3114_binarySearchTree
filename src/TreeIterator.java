@@ -1,5 +1,4 @@
 
-
 import java.util.ArrayList;
 
 /**
@@ -12,7 +11,7 @@ import java.util.ArrayList;
  */
 
 public class TreeIterator {
-    ArrayList<BinaryNode<Rectangle, String>> nodeList;
+    private ArrayList<BinaryNode<Rectangle, String>> nodeList;
 
 
     /**
@@ -25,6 +24,9 @@ public class TreeIterator {
 
     /**
      * Adds nodes through in-order traversal to ArrayList.
+     * 
+     * @param node
+     *            node to start in-order traversal
      */
     public void inorderTrav(BinaryNode<Rectangle, String> node) {
         if (node != null) {

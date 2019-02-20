@@ -134,6 +134,8 @@ public class BST<U, T extends Comparable<? super T>> {
      *
      * @param x
      *            the item to insert.
+     * @param k
+     *            the key to insert
      * @param node
      *            the node that roots the subtree.
      * @return the new root of the subtree.

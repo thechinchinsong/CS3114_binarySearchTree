@@ -8,11 +8,6 @@ import java.util.ArrayList;
  * the TreeIterator class for some aspects of in-order traversal for specific
  * functionality needed.
  *
- * @param <Rectangle>
- *            The data stored in each node.
- * @param <Name>
- *            The name of each node that is also the key. The same as the name
- *            of each rectangle stored in the node.
  * @author Ben Zevin
  * @author Yaoquan Song
  * @version 2019.2.19
@@ -75,8 +70,9 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            height of the rectangle
      */
     public void insert(String name, int x, int y, int w, int h) {
-        if (w > 0 && h > 0 && y >= 0 && x >= 0 && (x + w <= 1024) && (y
-            + h <= 1024)) {
+        if ((w > 0) && (h > 0) && (y >= 0) && (x >= 0) && ((x + w) <= 1024)
+            && ((y + h) <= 1024)) {
+            // System.out.println("inserted");
             super.insert(new Rectangle(name, x, y, w, h), name);
             System.out.println("Rectangle accepted: (" + name + ", " + x + ", "
                 + y + ", " + w + ", " + h + ")");
@@ -93,8 +89,7 @@ public class RectangleBST extends BST<Rectangle, String> {
      * remove function. The try catch is in order to catch when the
      * wanted rectangle could not be found to be removed.
      * 
-     * @param
-     *            the
+     * @param name
      *            name of the rectangle that is to be removed
      */
     public void remove(String name) {

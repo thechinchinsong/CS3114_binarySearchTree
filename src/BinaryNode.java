@@ -1,5 +1,4 @@
 
-
 /**
  * A basic node stored in a binary search tree. Built to work with
  * basically any kind of information.
@@ -22,7 +21,14 @@ public class BinaryNode<U, T> {
     private BinaryNode<U, T> right;
 
 
-    // Constructor
+    /**
+     * Constructor
+     * 
+     * @param element
+     *            the element to be stored
+     * @param key
+     *            the key used to access node
+     */
     BinaryNode(U element, T key) {
         this.element = element;
         this.key = key;
@@ -31,43 +37,89 @@ public class BinaryNode<U, T> {
     }
 
 
-    // Getter methods for all relevant information in this node
+    /**
+     * Getter for key
+     * 
+     * @return
+     *         returns key
+     */
     public T getKey() {
         return key;
     }
 
 
+    /**
+     * Getter for element
+     * 
+     * @return
+     *         returns the element
+     */
     public U getElement() {
         return element;
     }
 
 
+    /**
+     * Returns the left node
+     * 
+     * @return
+     *         left node
+     */
     public BinaryNode<U, T> getLeft() {
         return left;
     }
 
 
+    /**
+     * Returns the right node
+     * 
+     * @return
+     *         right node
+     */
     public BinaryNode<U, T> getRight() {
         return right;
     }
 
 
-    // Setter methods for the key, element, and both left and right nodes
+    /**
+     * Sets the key
+     * 
+     * @param value
+     *            value of key
+     */
     public void setKey(T value) {
         key = value;
     }
 
 
+    /**
+     * Sets the element
+     * 
+     * @param value
+     *            value of element
+     */
     public void setElement(U value) {
         element = value;
     }
 
 
+    /**
+     * sets the left node
+     * 
+     * @param value
+     *            what left node should be
+     */
     public void setLeft(BinaryNode<U, T> value) {
         left = value;
     }
 
 
+    /**
+     * Sets the right node.
+     * 
+     * @param value
+     *            what the right node should be
+     */
     public void setRight(BinaryNode<U, T> value) {
         right = value;
     }

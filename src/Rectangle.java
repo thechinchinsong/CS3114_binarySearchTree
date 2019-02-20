@@ -17,7 +17,20 @@ public class Rectangle {
     private int y;
 
 
-    // Constructor
+    /**
+     * Creates a rectangle with set element values
+     * 
+     * @param name
+     *            name of rectangle
+     * @param x
+     *            x coordinate
+     * @param y
+     *            y coordinate
+     * @param w
+     *            width of rectangle
+     * @param h
+     *            height of rectangle
+     */
     Rectangle(String name, int x, int y, int w, int h) {
         this.name = name;
         this.w = w;
@@ -27,54 +40,57 @@ public class Rectangle {
     }
 
 
-    // Getter methods for relevant informations
+    /**
+     * returns name
+     * 
+     * @return
+     *         name of rectangle
+     */
     public String getName() {
         return name;
     }
 
 
+    /**
+     * returns width
+     * 
+     * @return
+     *         width of rectangle
+     */
     public int getWidth() {
         return w;
     }
 
 
+    /**
+     * returns height
+     * 
+     * @return
+     *         height of rectangle
+     */
     public int getHeight() {
         return h;
     }
 
 
+    /**
+     * returns x coordinate
+     * 
+     * @return
+     *         x coordinate
+     */
     public int getX() {
         return x;
     }
 
 
+    /**
+     * returns y coordinate
+     * 
+     * @return
+     *         y coordinate
+     */
     public int getY() {
         return y;
-    }
-
-
-    // Setter methods for all relevant information
-    public void setName(String name) {
-        this.name = name;
-    }
-
-
-    public void setWidth(int width) {
-        this.w = width;
-    }
-
-
-    public void setHeight(int height) {
-        this.h = height;
-    }
-
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-
-    public void setT(int y) {
-        this.y = y;
     }
 }
