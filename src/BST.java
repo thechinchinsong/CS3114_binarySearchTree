@@ -58,6 +58,8 @@ public class BST<U, T extends Comparable<? super T>> {
      *
      * @param k
      *            the item to remove.
+     * @param count
+     *            count to determine when to remove by elements
      */
     public void remove(T k, int count) {
         root = remove(k, count, root);

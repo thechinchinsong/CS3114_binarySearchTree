@@ -135,15 +135,17 @@ public class RectangleBST extends BST<Rectangle, String> {
                 found = true;
                 try {
                     int count = 0;
-                    for( int j = 0; j < i; j++) {
-                        if(inorderList.get(i).getKey().compareTo(inorderList.get(j).getKey()) == 0) {
+                    for (int j = 0; j < i; j++) {
+                        if (inorderList.get(i).getKey().compareTo(inorderList
+                            .get(j).getKey()) == 0) {
                             count++;
-                            
+
                         }
                     }
                     super.remove(inorderList.get(i).getKey(), count);
                 }
                 catch (Exception e) {
+                    /*nothing*/
                 }
             }
         }

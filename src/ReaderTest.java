@@ -11,15 +11,12 @@ import java.io.PrintStream;
 
 public class ReaderTest extends student.TestCase {
 
-    private Reader scan;
-
-
     /**
      * run Read for the scanner
      */
     public void testRead1() throws FileNotFoundException {
+        Reader scan = new Reader("testgg_nore.txt");
         RectangleBST tree = new RectangleBST();
-        scan = new Reader("SyntaxTest.txt");
         final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent));
         scan.reader(tree);
