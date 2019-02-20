@@ -93,20 +93,4 @@ public class Rectangle {
     public int getY() {
         return y;
     }
-
-
-    /**
-     * Compares the values in each rectangle to see if they
-     * are equal.
-     * 
-     * @param rec
-     *            rectangle to be compared to
-     * @return
-     *         boolean of whether the two are equal
-     */
-    public boolean valueEquals(Rectangle rec) {
-        return rec.getX() == this.getX() && rec.getY() == this.getY() && rec
-            .getWidth() == this.getWidth() && rec.getHeight() == this
-                .getHeight();
-    }
 }

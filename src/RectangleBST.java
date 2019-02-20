@@ -135,7 +135,7 @@ public class RectangleBST extends BST<Rectangle, String> {
                 found = true;
                 try {
                     int count = 0;
-                    for( int j = 0; i < j; i++) {
+                    for( int j = 0; j < i; j++) {
                         if(inorderList.get(i).getKey().compareTo(inorderList.get(j).getKey()) == 0) {
                             count++;
                             

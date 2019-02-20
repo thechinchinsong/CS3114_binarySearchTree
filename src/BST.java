@@ -64,11 +64,6 @@ public class BST<U, T extends Comparable<? super T>> {
     }
 
 
-    public void removeElement(U k, String name) {
-        root = removeHelper(k, root, name);
-    }
-
-
     /**
      * Find the smallest item in the tree.
      *
@@ -156,59 +151,6 @@ public class BST<U, T extends Comparable<? super T>> {
             node.setRight(insertHelper(x, k, node.getRight()));
         }
         return node;
-    }
-
-
-    /**
-     * Internal method to remove a specified item from a subtree
-     * based on element values
-     *
-     * @param x
-     *            the item to remove.
-     * @param node
-     *            the node that roots the subtree.
-     * @return the new root of the subtree.
-     */
-    private BinaryNode<U, T> removeHelper(
-        U x,
-        BinaryNode<U, T> node,
-        String name) {
-        // This local variable will contain the new root of the subtree,
-        // if the root needs to change.
-        BinaryNode<U, T> result = node;
-
-        // If there's no more subtree to examine
-        if (node == null) {
-            throw new IllegalArgumentException("No more subtree to examine");
-        }
-
-        // if value should be to the left of the root
-        if (name.compareTo((String)node.getKey()) < 0) {
-            node.setLeft(removeHelper(x, node.getLeft(), name));
-        }
-        // if value should be to the right of the root
-        else if (name.compareTo((String)node.getKey()) > 0) {
-            node.setRight(removeHelper(x, node.getRight(), name));
-        }
-        // If value is on the current node
-        else {
-            // If there are two children
-            if (node.getLeft() != null && node.getRight() != null) {
-                node.setElement(findMin(node.getRight()).getElement());
-                node.setKey(findMin(node.getRight()).getKey());
-                node.setRight(removeHelper(node.getElement(), node.getRight(),
-                    name));
-            }
-            // If there is only one child on the left
-            else if (node.getLeft() != null) {
-                result = node.getLeft();
-            }
-            // If there is only one child on the right
-            else {
-                result = node.getRight();
-            }
-        }
-        return result;
     }
 
 
