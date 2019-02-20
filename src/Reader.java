@@ -1,28 +1,51 @@
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.text.ParseException;
-import java.util.Iterator;
 import java.util.Scanner;
 
+/**
+ * Scanners through a string input, parsing each line for function calls
+ * and parameters to pass to the created RectangleBST.
+ * 
+ * @author Yaoquan Song (thechin)
+ * @author Ben Zevin (benz44)
+ * 
+ * @version 2019.2.19
+ *
+ */
 public class Reader {
-    Scanner scan;
+    private Scanner scan;
 
 
+    /**
+     * Constructor that creates the file and scanner that are used.
+     * 
+     * @param fileName
+     *            name of the file that is to be parsed
+     */
     public Reader(String fileName) throws FileNotFoundException {
         File file = new File(fileName);
         scan = new Scanner(file);
     }
 
 
+    /**
+     * Reader is the method where parsing is actually done.
+     * 
+     * @param tree
+     *            the BST class in which to call methods on and stores
+     *            information
+     */
     public void reader(RectangleBST tree) {
         while (scan.hasNextLine()) {
             String line = scan.nextLine();
             String[] parts = line.trim().split("\\s+");
             if (parts[0].contentEquals("insert") && parts.length == 6) {
 
-                int x = 0, y = 0, w = 0, h = 0;
+                int x = 0;
+                int y = 0;
+                int w = 0;
+                int h = 0;
                 try {
                     x = Integer.parseInt(parts[2]);
                     y = Integer.parseInt(parts[3]);
@@ -41,7 +64,10 @@ public class Reader {
             }
             else if (parts[0].contentEquals("remove") && parts.length == 5) {
 
-                int x = 0, y = 0, w = 0, h = 0;
+                int x = 0;
+                int y = 0;
+                int w = 0;
+                int h = 0;
                 try {
                     x = Integer.parseInt(parts[1]);
                     y = Integer.parseInt(parts[2]);
@@ -65,7 +91,10 @@ public class Reader {
             else if (parts[0].contentEquals("regionsearch")
                 && parts.length == 5) {
 
-                int x = 0, y = 0, w = 0, h = 0;
+                int x = 0;
+                int y = 0;
+                int w = 0;
+                int h = 0;
                 try {
                     x = Integer.parseInt(parts[1]);
                     y = Integer.parseInt(parts[2]);

@@ -1,4 +1,5 @@
 
+import java.util.ArrayList;
 
 /**
  * Implements an binary search tree specifically using the rectangle class
@@ -17,8 +18,6 @@
  * @version 2019.2.19
  */
 
-import java.util.ArrayList;
-
 public class RectangleBST extends BST<Rectangle, String> {
     private BinaryNode<Rectangle, String> root;
 
@@ -35,12 +34,19 @@ public class RectangleBST extends BST<Rectangle, String> {
      * Returns the root node of the tree.
      * 
      * @return
+     *         returns the root node of this tree.
      */
     public BinaryNode<Rectangle, String> getRoot() {
         return root;
     }
 
 
+    /**
+     * Returns the size of the inorder ArrayList.
+     * 
+     * @return
+     *         size of arraylist
+     */
     public int getSize() {
         ArrayList<BinaryNode<Rectangle, String>> inorderList =
             new ArrayList<BinaryNode<Rectangle, String>>();
@@ -86,6 +92,10 @@ public class RectangleBST extends BST<Rectangle, String> {
      * Removes nodes based on name. Uses the inherited BST class's
      * remove function. The try catch is in order to catch when the
      * wanted rectangle could not be found to be removed.
+     * 
+     * @param
+     *            the
+     *            name of the rectangle that is to be removed
      */
     public void remove(String name) {
         try {
@@ -212,9 +222,9 @@ public class RectangleBST extends BST<Rectangle, String> {
      * Compares the top left and bottom right points of two rectangles to
      * determine if they are intersecting
      * 
-     * @param node1
+     * @param rec1
      *            first rectangle to compare
-     * @param node2
+     * @param rec2
      *            second rectangle to compare
      * @return
      *         true if the 2 rectangles intersect, false if they don't
@@ -228,13 +238,8 @@ public class RectangleBST extends BST<Rectangle, String> {
             return false;
         }
 
-        // If one rectangle is below other
-        if (rec1.getY() >= rec2.getY() + rec2.getHeight() || rec2.getY() >= rec1
-            .getY() + rec1.getHeight()) {
-            return false;
-        }
-
-        return true;
+        return !(rec1.getY() >= rec2.getY() + rec2.getHeight() || rec2
+            .getY() >= rec1.getY() + rec1.getHeight());
     }
 
 
@@ -298,8 +303,6 @@ public class RectangleBST extends BST<Rectangle, String> {
      *            the node at which to start in-order traversal
      * @param depth
      *            starting depth
-     * @param size
-     *            starting size of the BST
      */
     private void dump(BinaryNode<Rectangle, String> node, int depth) {
         if (node == null) {

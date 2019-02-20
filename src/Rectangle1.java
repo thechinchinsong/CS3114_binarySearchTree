@@ -1,5 +1,4 @@
 
-
 import java.io.FileNotFoundException;
 
 /**
@@ -17,7 +16,7 @@ public class Rectangle1 {
      * Default constructor
      */
     public Rectangle1() {
-
+        /* Doesn't need anything in here */
     }
 
 

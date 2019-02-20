@@ -1,5 +1,4 @@
 
-
 /**
  * Implements an binary search tree. Note that all "matching" is
  * based on the compareTo() method. Most of this class was taken
@@ -30,6 +29,12 @@ public class BST<U, T extends Comparable<? super T>> {
 
 
     // ~ Public methods ........................................................
+    /**
+     * Returns the root node of the BST
+     * 
+     * @return
+     *         Root node of BST
+     */
     public BinaryNode<U, T> getRoot() {
         return root;
     }
@@ -40,8 +45,8 @@ public class BST<U, T extends Comparable<? super T>> {
      *
      * @param x
      *            the item to insert.
-     * @throws DuplicateItemException
-     *             if x is already present.
+     * @param k
+     *            name of item to insert
      */
     public void insert(U x, T k) {
         root = insertHelper(x, k, root);
@@ -49,12 +54,10 @@ public class BST<U, T extends Comparable<? super T>> {
 
 
     /**
-     * Remove the specified value from the tree.
+     * Remove the specified item from the tree.
      *
-     * @param x
+     * @param k
      *            the item to remove.
-     * @throws ItemNotFoundException
-     *             if x is not found.
      */
     public void remove(T k) {
         root = remove(k, root);
@@ -134,8 +137,6 @@ public class BST<U, T extends Comparable<? super T>> {
      * @param node
      *            the node that roots the subtree.
      * @return the new root of the subtree.
-     * @throws DuplicateItemException
-     *             if x is already present.
      */
     public BinaryNode<U, T> insertHelper(U x, T k, BinaryNode<U, T> node) {
         if (node == null) {
@@ -159,8 +160,6 @@ public class BST<U, T extends Comparable<? super T>> {
      * @param node
      *            the node that roots the subtree.
      * @return the new root of the subtree.
-     * @throws ItemNotFoundException
-     *             if x is not found.
      */
     private BinaryNode<U, T> remove(T x, BinaryNode<U, T> node) {
         // This local variable will contain the new root of the subtree,
