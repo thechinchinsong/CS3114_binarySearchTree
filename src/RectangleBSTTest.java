@@ -1,5 +1,4 @@
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
@@ -43,18 +42,19 @@ public class RectangleBSTTest extends student.TestCase {
         assertEquals("Rectangle rejected: (rec1, -1, 1, 1, 1)\n"
             + "Rectangle rejected: (rec1, 1, -1, 1, 1)\n"
             + "Rectangle rejected: (rec1, 1, 1, -1, 1)\n"
-            + "Rectangle rejected: (rec1, 1, 1, 1, -1)\n", outContent.toString());
+            + "Rectangle rejected: (rec1, 1, 1, 1, -1)\n", outContent
+                .toString());
         tree.insert("rec1", 1, 1, 1, 1);
         assertFalse(tree.isEmpty());
         tree.insert("rec2", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
-        /*
-        final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
+
+        /*final ByteArrayOutputStream outContent1 = new ByteArrayOutputStream();
         System.setOut(new PrintStream(outContent1));
         assertEquals("Rectangle accepted: (rec1, 1, 1, 1, 1)\n"
-            + "Rectangle accepted: (rec2, 2, 2, 2, 2)\n", outContent1.toString());*/
+            + "Rectangle accepted: (rec2, 2, 2, 2, 2)\n", outContent1
+                .toString());*/
 
-  
     }
 
 
