@@ -95,7 +95,7 @@ public class RectangleBST extends BST<Rectangle, String> {
      */
     public void remove(String name) {
         try {
-            super.remove(name);
+            super.remove(name, 0);
         }
         catch (Exception e) {
             System.out.println("Rectangle rejected " + name);
@@ -134,11 +134,16 @@ public class RectangleBST extends BST<Rectangle, String> {
                         .getElement().getHeight() == h)) {
                 found = true;
                 try {
-                    super.remove(inorderList.get(i).getKey());
+                    int count = 0;
+                    for( int j = 0; i < j; i++) {
+                        if(inorderList.get(i).getKey().compareTo(inorderList.get(j).getKey()) == 0) {
+                            count++;
+                            
+                        }
+                    }
+                    super.remove(inorderList.get(i).getKey(), count);
                 }
                 catch (Exception e) {
-                    // System.out.println("Rectangle rejected (" + x + ", " + y
-                    // + ", " + w + ", " + h + ")");
                 }
             }
         }

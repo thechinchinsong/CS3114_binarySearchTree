@@ -102,14 +102,14 @@ public class RectangleBSTTest extends student.TestCase {
         tree.insert("rec1", 1, 1, 1, 1);
         tree.insert("rec1", 2, 2, 2, 2);
         assertFalse(tree.isEmpty());
-        tree.remove(1, 1, 1, 1);
+        tree.remove(2, 2, 2, 2);
         assertEquals(1, tree.getSize());
         tree.remove(3, 4, 5, 6);
         assertEquals("Rectangle rejected (-1, 1, 1, 1)\n"
             + "Rectangle accepted: (rec1, 1, 1, 1, 1)\n"
             + "Rectangle accepted: (rec1, 2, 2, 2, 2)\n"
             + "Rectangle rejected (3, 4, 5, 6)\n", outContent.toString());
-        tree.remove(2, 2, 2, 2);
+        tree.remove(1, 1, 1, 1);
         assertEquals(0, tree.getSize());
         assertTrue(tree.isEmpty());
 

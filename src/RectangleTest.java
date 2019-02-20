@@ -59,4 +59,13 @@ public class RectangleTest extends student.TestCase {
         assertEquals(rec1.getY(), 2);
     }
 
+
+    /**
+     * Test if valueEquals() method returns correct boolean
+     */
+    public void testValueEquals() {
+        Rectangle rec2 = new Rectangle("rec2", 1, 2, 3, 4);
+        assertTrue(rec1.valueEquals(rec2));
+    }
+
 }
